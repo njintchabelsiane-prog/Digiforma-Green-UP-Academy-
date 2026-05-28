@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'corsheaders',
     # Nos apps
     'users',
+    'gestion_classes',
 ]
 
 MIDDLEWARE = [
