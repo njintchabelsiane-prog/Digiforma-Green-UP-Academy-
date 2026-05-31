@@ -1,3 +1,4 @@
+#Environnement python 
 .env
 __pycache__/
 *.pyc
@@ -5,3 +6,23 @@ db.sqlite3
 venv/
 node_modules/
 *.sqlite3
+
+# Django - NE JAMAIS POUSSER
+db.sqlite3
+*.log
+media/
+
+# Variables d'environnement - NE JAMAIS POUSSER
+.env
+
+# Node / React
+node_modules/
+build/
+
+# Système
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
