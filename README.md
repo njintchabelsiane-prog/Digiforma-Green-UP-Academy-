@@ -56,6 +56,10 @@ python manage.py runserver
 L'API est accessible sur : http://127.0.0.1:8000
 
 ---
+### 2. Créer et configurer le fichier .env
+
+bash
+cp .env.example .env
 
 ## Installation du Frontend
 
