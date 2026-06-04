@@ -1,0 +1,204 @@
+/* ── Reset & base ────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #f0f0f0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Wrapper split ───────────────────────────────── */
+.login-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 1100px;
+  min-height: 90vh;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+  background: #fff;
+}
+
+/* ── Panneau gauche (vert sauge) ─────────────────── */
+.login-left {
+  flex: 1;
+  background-color: #6faa85;  /* vert sauge du maquette */
+  display: flex;
+  align-items: flex-start;
+  padding: 48px 52px;
+}
+
+.login-left-content {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.brand-title {
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.brand-subtitle {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.5;
+  max-width: 280px;
+}
+
+/* ── Panneau droit (blanc) ───────────────────────── */
+.login-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 48px;
+  background: #fff;
+}
+
+.login-form-container {
+  width: 100%;
+  max-width: 380px;
+}
+
+/* ── Titres formulaire ───────────────────────────── */
+.form-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.form-subtitle {
+  font-size: 0.875rem;
+  color: #999;
+  font-weight: 500;
+  margin-bottom: 36px;
+  letter-spacing: 0.01em;
+}
+
+/* ── Formulaire ──────────────────────────────────── */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1.5px solid #ececec;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  color: #555;
+  background: #fafafa;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.login-input::placeholder {
+  color: #bbb;
+  font-weight: 500;
+}
+
+.login-input:focus {
+  border-color: #6faa85;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(111, 170, 133, 0.12);
+}
+
+/* ── Mot de passe oublié ─────────────────────────── */
+.forgot-password {
+  text-align: left;
+  margin-top: 2px;
+}
+
+.forgot-password a {
+  font-size: 0.82rem;
+  color: #6faa85;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: opacity 0.2s;
+}
+
+.forgot-password a:hover {
+  opacity: 0.75;
+}
+
+/* ── Bouton ──────────────────────────────────────── */
+.login-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 8px;
+  background-color: #6faa85;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+.login-btn:hover:not(:disabled) {
+  background-color: #5d9872;
+  box-shadow: 0 4px 14px rgba(111, 170, 133, 0.35);
+}
+
+.login-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.login-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ── Message d'erreur ────────────────────────────── */
+.login-error {
+  background: #fff3f3;
+  border: 1px solid #f5c6c6;
+  color: #c0392b;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  margin-bottom: 8px;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .login-wrapper {
+    flex-direction: column;
+    min-height: 100vh;
+    border-radius: 0;
+  }
+
+  .login-left {
+    min-height: 200px;
+    padding: 36px 32px;
+  }
+
+  .login-right {
+    padding: 40px 28px;
+  }
+}
