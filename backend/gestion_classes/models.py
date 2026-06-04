@@ -38,3 +38,4 @@ class Classe(models.Model):
     class Meta:
         verbose_name = 'Classe'
         verbose_name_plural = 'Classes'
+        
