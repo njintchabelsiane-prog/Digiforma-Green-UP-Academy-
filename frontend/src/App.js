@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import LoginPage from './components/loginPage';
+import Dashboard from './components/Dashboard';
+import DashboardEleve from './components/DashboardEleve';
+import CreerClasse from './components/CreerClasse';
+import ListeEleve from './components/ListeEleve';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard-eleve" element={<DashboardEleve />} />
+        <Route path="/creer-classe" element={<CreerClasse />} />
+        <Route path="/liste-eleve" element={<ListeEleve />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
