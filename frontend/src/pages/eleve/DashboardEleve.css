@@ -1,0 +1,54 @@
+.dash-eleve h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 2rem;
+}
+
+.taux-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.taux-section h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 1rem;
+}
+
+.taux-value {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+.taux-value--ok      { color: #2e7d32; }
+.taux-value--warning { color: #f57f17; }
+.taux-value--danger  { color: #c62828; }
+
+.btn-rejoindre {
+  background: #2e7d32;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn-rejoindre:hover { background: #1b5e20; }
+
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 3rem;
+}
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #c8e6c9;
+  border-top-color: #2e7d32;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }

@@ -1,0 +1,101 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  min-height: 100vh;
+  background-color: #1a2e1a;
+  color: #fff;
+  padding: 1.25rem 0;
+  flex-shrink: 0;
+}
+
+/* Logo */
+.sidebar__logo {
+  padding: 0.5rem 1.25rem 1.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #a5d6a7;
+}
+
+/* Profil */
+.sidebar__profile {
+  padding: 0.75rem 1rem;
+  margin: 0 0.75rem 1.25rem;
+  background: rgba(255,255,255,0.06);
+  border-radius: 8px;
+}
+.sidebar__user-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.sidebar__user-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #fff;
+}
+.sidebar__user-role {
+  font-size: 0.75rem;
+  color: #a5d6a7;
+  margin-top: 2px;
+}
+
+/* Navigation */
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 0.75rem;
+  flex: 1;
+}
+.sidebar__link {
+  display: block;
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  color: #c8e6c9;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+.sidebar__link:hover { background: rgba(255,255,255,0.08); }
+.sidebar__link--active { background: #2e7d32; color: #fff; font-weight: 700; }
+
+/* Déconnexion */
+.sidebar__logout {
+  display: block;
+  width: calc(100% - 1.5rem);
+  text-align: left;
+  margin: 0.5rem 0.75rem 0;
+  padding: 0.65rem 0.85rem;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  color: #ef9a9a;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.sidebar__logout:hover { background: rgba(239,154,154,0.1); }
+
+/* ── Layout wrapper ── */
+.page-layout {
+  display: flex;
+  min-height: 100vh;
+}
+.page-content {
+  flex: 1;
+  padding: 2rem 2.5rem;
+  background: #f5f7f5;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .page-layout { flex-direction: column; }
+  .sidebar { width: 100%; min-height: auto; }
+  .page-content { padding: 1.25rem; }
+}
