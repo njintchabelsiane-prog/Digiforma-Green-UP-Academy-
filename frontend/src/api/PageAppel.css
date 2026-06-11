@@ -1,0 +1,202 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f6fa; }
+
+.appel-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px 16px;
+  background: #f5f6fa;
+}
+
+/* ── Card ── */
+.appel-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 24px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Header ── */
+.appel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.appel-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.appel-icon {
+  font-size: 2rem;
+  color: #1a73e8;
+}
+
+.appel-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.appel-sub {
+  font-size: 0.875rem;
+  color: #888;
+  margin-top: 2px;
+}
+
+.appel-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #555;
+  font-weight: 500;
+}
+
+.date-icon { font-size: 1.2rem; color: #1a73e8; }
+
+/* ── Table ── */
+.appel-table {
+  border: 1px solid #e8eaed;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding: 14px 16px;
+  background: #fafafa;
+  border-bottom: 1px solid #e8eaed;
+}
+
+.table-header .col-present { color: #2d6a4f; font-weight: 700; text-align: center; }
+.table-header .col-retard  { color: #e67e00; font-weight: 700; text-align: center; }
+.table-header .col-absent  { color: #c0392b; font-weight: 700; text-align: center; }
+.table-header .col-eleve   { font-weight: 600; color: #333; }
+
+.table-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding: 14px 16px;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.1s;
+}
+
+.table-row:last-child { border-bottom: none; }
+.table-row:hover { background: #fafafa; }
+
+.col-eleve {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.eleve-num { color: #aaa; font-size: 0.85rem; min-width: 20px; }
+
+.col-present, .col-retard, .col-absent {
+  display: flex;
+  justify-content: center;
+}
+
+/* ── Boutons statut ── */
+.btn-statut {
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: #fff;
+  min-width: 80px;
+}
+
+.btn-present {
+  border: 1.5px solid #2d6a4f;
+  color: #2d6a4f;
+}
+.btn-present.active {
+  background: #2d6a4f;
+  color: #fff;
+}
+.btn-present:hover:not(.active) { background: #f0faf4; }
+
+.btn-retard {
+  border: 1.5px solid #e67e00;
+  color: #e67e00;
+}
+.btn-retard.active {
+  background: #e67e00;
+  color: #fff;
+}
+.btn-retard:hover:not(.active) { background: #fff8f0; }
+
+.btn-absent {
+  border: 1.5px solid #c0392b;
+  color: #c0392b;
+}
+.btn-absent.active {
+  background: #c0392b;
+  color: #fff;
+}
+.btn-absent:hover:not(.active) { background: #fff5f5; }
+
+/* ── Bouton valider ── */
+.btn-valider {
+  width: 100%;
+  padding: 18px;
+  background: #1a73e8;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 14px rgba(26,115,232,0.35);
+}
+
+.btn-valider:hover:not(:disabled) {
+  background: #1558b0;
+  box-shadow: 0 6px 20px rgba(26,115,232,0.4);
+}
+
+.btn-valider:disabled { opacity: 0.65; cursor: not-allowed; }
+
+/* ── Légende ── */
+.legende {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  font-size: 0.875rem;
+  color: #555;
+}
+
+.legende span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-green  { background: #2d6a4f; }
+.dot-orange { background: #e67e00; }
+.dot-red    { background: #c0392b; }
