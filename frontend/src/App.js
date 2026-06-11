@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import PageAppel from "./PageAppel";
+import MesAbsence from "./MesAbscence";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/PageAppel" element={<PageAppel/>} />
-        <Route path="*" element={<Navigate to="/PageAppel" replace />} />
+        <Route path="/MesAbscence" element={<MesAbsence/>} />
+        <Route path="*" element={<Navigate to="/MesAbsence" replace />} />
       </Routes>
     </Router>
   );

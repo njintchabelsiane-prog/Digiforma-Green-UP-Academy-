@@ -1,0 +1,54 @@
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f8f9fa}
+.abs-layout{display:flex;min-height:100vh}
+.abs-sidebar{width:160px;background:#fff;border-right:1px solid #e8eaed;display:flex;flex-direction:column;padding:20px 0;flex-shrink:0}
+.abs-logo{display:flex;align-items:center;gap:8px;padding:0 16px 24px;font-weight:700;font-size:1rem;color:#1a73e8}
+.abs-nav{display:flex;flex-direction:column;gap:2px;padding:0 8px;flex:1}
+.abs-nav-item{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;font-size:.85rem;color:#555;text-decoration:none}
+.abs-nav-item:hover{background:#f5f6fa}
+.abs-nav-item.active{background:#e8f0fe;color:#1a73e8;font-weight:600}
+.badge-notif{background:#e53935;color:#fff;border-radius:50%;width:18px;height:18px;font-size:.7rem;display:inline-flex;align-items:center;justify-content:center;margin-left:4px}
+.abs-user{padding:16px;border-top:1px solid #e8eaed;display:flex;align-items:center;gap:10px}
+.abs-avatar{width:36px;height:36px;background:#e0e0e0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.abs-user-name{font-size:.85rem;font-weight:600;color:#333}
+.abs-logout{font-size:.75rem;color:#e53935;text-decoration:none}
+.abs-main{flex:1;display:flex;flex-direction:column}
+.abs-topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;background:#fff;border-bottom:1px solid #e8eaed}
+.abs-topbar-icons{display:flex;align-items:center;gap:12px}
+.notif-btn{position:relative;font-size:1.3rem;cursor:pointer}
+.notif-dot{position:absolute;top:-4px;right:-4px;background:#e53935;color:#fff;border-radius:50%;width:16px;height:16px;font-size:.65rem;display:flex;align-items:center;justify-content:center}
+.avatar-btn{font-size:1.5rem;cursor:pointer}
+.abs-content{padding:32px;display:flex;flex-direction:column;gap:24px}
+.abs-title{font-size:1.6rem;font-weight:700;color:#1a1a2e}
+.abs-subtitle{font-size:.9rem;color:#888;margin-top:4px}
+.abs-card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 1px 8px rgba(0,0,0,.06);border:1px solid #e8eaed}
+.card-section-title{font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:20px}
+.presence-row{display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.presence-stats{display:flex;flex-direction:column;gap:20px}
+.presence-stat{display:flex;align-items:center;gap:10px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex-shrink:0}
+.dot-green{background:#22c55e}
+.dot-red{background:#e53935}
+.stat-label{font-size:.82rem;color:#888}
+.stat-value{font-size:.95rem;font-weight:600;color:#333}
+.presence-trend{background:#f0faf4;border-radius:10px;padding:16px 20px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.trend-value{font-size:1.1rem;font-weight:700;color:#22c55e}
+.trend-sub{font-size:.78rem;color:#888}
+.abs-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.btn-deposer{background:#1a73e8;color:#fff;border:none;padding:12px 20px;border-radius:8px;font-size:.875rem;font-weight:600;cursor:pointer}
+.abs-table{width:100%;border-collapse:collapse;font-size:.875rem}
+.abs-table th{text-align:left;padding:10px 16px;color:#888;font-weight:500;border-bottom:1px solid #e8eaed}
+.abs-table td{padding:16px;border-bottom:1px solid #f0f0f0;color:#333}
+.abs-table tr:last-child td{border-bottom:none}
+.badge{padding:5px 12px;border-radius:20px;font-size:.8rem;font-weight:600}
+.badge-vert{background:#f0faf4;color:#22c55e;border:1px solid #22c55e}
+.badge-orange{background:#fff8f0;color:#e67e00;border:1px solid #e67e00}
+.badge-rouge{background:#fff5f5;color:#e53935;border:1px solid #e53935}
+.justif-icon{color:#22c55e}
+.dash{color:#aaa}
+.menu-btn{background:none;border:none;font-size:1.2rem;cursor:pointer;color:#888}
+.abs-info{display:flex;align-items:flex-start;gap:12px;background:#f0f4ff;border-radius:10px;padding:16px;margin-top:20px}
+.abs-info p{font-size:.82rem;color:#555;line-height:1.6;flex:1}
+.info-link{font-size:.82rem;color:#1a73e8;font-weight:600;text-decoration:none;white-space:nowrap}
+@media(max-width:768px){.abs-sidebar{display:none}.abs-content{padding:20px 16px}}
+
