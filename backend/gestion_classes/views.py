@@ -11,7 +11,7 @@ TEMP_ELEVE_PASSWORD = 'Eleve123!'
 
 
 def user_can_view_classe(user, classe):
-    if user.role == 'admin' or classe.enseignant_id == user.id:
+    if user.role == 'admin' or user.is_superuser or classe.enseignant_id == user.id:
         return True
     if user.role == 'eleve':
         return Inscription.objects.filter(classe=classe, eleve=user).exists()
@@ -19,7 +19,7 @@ def user_can_view_classe(user, classe):
 
 
 def user_can_manage_classe(user, classe):
-    return user.role == 'admin' or classe.enseignant_id == user.id
+    return user.role == 'admin' or user.is_superuser or classe.enseignant_id == user.id
 
 
 class ClasseListCreateView(APIView):
@@ -27,7 +27,7 @@ class ClasseListCreateView(APIView):
 
     def get(self, request):
         archivee = request.query_params.get('archivee', request.query_params.get('is_archived', 'false')).lower() == 'true'
-        if request.user.role == 'admin':
+        if request.user.role == 'admin' or request.user.is_superuser:
             classes = Classe.objects.filter(is_archived=archivee)
         else:
             classes = Classe.objects.filter(enseignant=request.user, is_archived=archivee)
@@ -35,7 +35,7 @@ class ClasseListCreateView(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        if request.user.role not in ['enseignant', 'admin']:
+        if request.user.role not in ['enseignant', 'admin'] and not request.user.is_superuser:
             return Response(
                 {'error': 'Seul un enseignant peut créer une classe.'},
                 status=status.HTTP_403_FORBIDDEN

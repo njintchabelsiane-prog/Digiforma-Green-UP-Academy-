@@ -8,7 +8,17 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from .models import User
 
 
-TEMP_USER_PASSWORD = 'Greenup123!'
+TEMP_USER_PASSWORD = 'Test1234!'
+
+
+def get_effective_role(user):
+    if user.is_superuser:
+        return 'admin'
+    return user.role
+
+
+def is_admin_user(user):
+    return user.role == 'admin' or user.is_superuser
 
 
 class LoginView(TokenObtainPairView):
@@ -41,7 +51,7 @@ class MeView(APIView):
             "email":  user.email,
             "nom":    user.nom,
             "prenom": user.prenom,
-            "role":   user.role,
+            "role":   get_effective_role(user),
         })
 
 
@@ -49,7 +59,7 @@ class UsersAdminView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        if request.user.role != 'admin':
+        if not is_admin_user(request.user):
             return Response({'detail': 'Réservé aux administrateurs.'}, status=status.HTTP_403_FORBIDDEN)
 
         users = User.objects.order_by('role', 'nom', 'prenom')
@@ -66,7 +76,7 @@ class UsersAdminView(APIView):
         ])
 
     def post(self, request):
-        if request.user.role != 'admin':
+        if not is_admin_user(request.user):
             return Response({'detail': 'Réservé aux administrateurs.'}, status=status.HTTP_403_FORBIDDEN)
 
         email = (request.data.get('email') or '').strip().lower()
@@ -103,7 +113,7 @@ class UserAdminDetailView(APIView):
     permission_classes = [IsAuthenticated]
 
     def patch(self, request, pk):
-        if request.user.role != 'admin':
+        if not is_admin_user(request.user):
             return Response({'detail': 'Réservé aux administrateurs.'}, status=status.HTTP_403_FORBIDDEN)
         if request.user.id == pk and request.data.get('is_active') is False:
             return Response({'detail': 'Vous ne pouvez pas désactiver votre propre compte.'}, status=status.HTTP_400_BAD_REQUEST)

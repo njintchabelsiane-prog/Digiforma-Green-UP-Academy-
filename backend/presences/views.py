@@ -17,7 +17,7 @@ SEUIL_ABSENCES = 3
 
 
 def user_can_manage_classe(user, classe):
-    return user.role == 'admin' or classe.enseignant_id == user.id
+    return user.role == 'admin' or user.is_superuser or classe.enseignant_id == user.id
 
 
 def apply_period_filter(queryset, periode):
@@ -195,7 +195,7 @@ class StatsGlobalesView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        if request.user.role != 'admin':
+        if request.user.role != 'admin' and not request.user.is_superuser:
             return Response({'detail': 'Réservé aux administrateurs.'}, status=status.HTTP_403_FORBIDDEN)
 
         classes = Classe.objects.filter(is_archived=False).annotate(
