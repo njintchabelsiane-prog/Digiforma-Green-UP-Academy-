@@ -168,6 +168,63 @@
   margin-bottom: 1rem;
 }
 
+.inline-form {
+  background: #fff;
+  border: 1px solid #e8f5e9;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+}
+
+.inline-form h2 {
+  margin-top: 0;
+}
+
+.bulk-textarea {
+  border: 1px solid #d7d7d7;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #223026;
+  display: block;
+  font: inherit;
+  line-height: 1.45;
+  margin: 1rem 0;
+  min-height: 108px;
+  padding: 0.75rem;
+  resize: vertical;
+  width: 100%;
+}
+
+.bulk-textarea:focus {
+  border-color: #2e7d32;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.12);
+  outline: none;
+}
+
+.form-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin-bottom: 1rem;
+}
+
+.form-input {
+  border: 1px solid #d7d7d7;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #223026;
+  font: inherit;
+  min-height: 42px;
+  padding: 0.55rem 0.75rem;
+  width: 100%;
+}
+
+.form-input:focus {
+  border-color: #2e7d32;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.12);
+  outline: none;
+}
+
 /* ── Spinner ── */
 .spinner-wrapper {
   display: flex;
@@ -211,6 +268,7 @@
 }
 .data-table tr:last-child td { border-bottom: none; }
 .data-table tr:hover td { background: #fafff8; }
+.data-table tr.row--absent td { background: #fff5f5; }
 
 /* ── Badge statut ── */
 .badge {

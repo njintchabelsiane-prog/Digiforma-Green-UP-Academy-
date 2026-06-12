@@ -6,7 +6,9 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 User = get_user_model()
 
+
 class AuthTests(APITestCase):
+
     def setUp(self):
         self.client = APIClient()
         self.enseignant = User.objects.create_user(
@@ -43,12 +45,11 @@ class AuthTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIn('access', response.data)
         print("Token refresh successful, new access token received.")
-        
+
     def test_me(self):
-    refresh = RefreshToken.for_user(self.enseignant)
-    self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {refresh.access_token}')
-    response = self.client.get('/api/auth/me/', format='json')
-    self.assertEqual(response.status_code, status.HTTP_200_OK)
-    self.assertEqual(response.data['email'], 'enseignant@example.com')
-    print("Me successful, user data received.")
-    
+        refresh = RefreshToken.for_user(self.enseignant)
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {refresh.access_token}')
+        response = self.client.get('/api/auth/me/', format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['email'], 'enseignant@example.com')
+        print("Me successful, user data received.")

@@ -20,7 +20,7 @@ export default function DashboardEnseignant() {
       .finally(() => setLoading(false));
   }, []);
 
-  const classesActives = classes.filter((c) => !c.archivee);
+  const classesActives = classes.filter((c) => !c.is_archived);
   const totalEleves    = classes.reduce((acc, c) => acc + (c.nb_eleves || 0), 0);
 
   return (

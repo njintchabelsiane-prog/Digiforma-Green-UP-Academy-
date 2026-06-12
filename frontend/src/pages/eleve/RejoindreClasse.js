@@ -13,7 +13,7 @@ export default function RejoindreClasse() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!code.trim()) { setError("Entrez un code d'invitation."); return; }
+    if (!code.trim()) { setError('Entrez un code d\'invitation.'); return; }
 
     setLoading(true);
     setError('');
@@ -21,13 +21,10 @@ export default function RejoindreClasse() {
       const res = await rejoindreClasse(code.trim().toUpperCase());
       setSuccess(res.data);
     } catch (err) {
-      const msg = err.response?.data?.error || err.response?.data?.detail;
       if (err.response?.status === 400) {
-        setError(msg || 'Code invalide ou classe introuvable.');
-      } else if (err.response?.status === 403) {
-        setError('Seul un élève peut rejoindre une classe.');
-      } else if (err.response?.status === 404) {
-        setError('Code invalide ou classe introuvable.');
+        setError(err.response.data?.detail || 'Code invalide ou classe introuvable.');
+      } else if (err.response?.status === 409) {
+        setError('Vous êtes déjà inscrit(e) dans cette classe.');
       } else {
         setError('Une erreur est survenue. Réessayez.');
       }
@@ -49,16 +46,10 @@ export default function RejoindreClasse() {
 
         <div style={{ maxWidth: 420 }}>
           {!success ? (
-            <div style={{
-              background: '#fff', borderRadius: 12,
-              padding: '2rem', boxShadow: '0 1px 4px rgba(0,0,0,0.07)'
-            }}>
+            <div style={{ background: '#fff', borderRadius: 12, padding: '2rem', boxShadow: '0 1px 4px rgba(0,0,0,0.07)' }}>
               {error && <div className="alert-error">{error}</div>}
               <form onSubmit={handleSubmit}>
-                <label style={{
-                  display: 'block', marginBottom: '0.5rem',
-                  fontWeight: 600, color: '#1a2e1a'
-                }}>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, color: '#1a2e1a' }}>
                   Code d'invitation
                 </label>
                 <input
@@ -69,12 +60,10 @@ export default function RejoindreClasse() {
                   maxLength={6}
                   disabled={loading}
                   style={{
-                    width: '100%', padding: '0.75rem 1rem',
-                    fontSize: '1.4rem', letterSpacing: '0.3rem',
-                    textAlign: 'center', fontWeight: 700,
-                    border: '2px solid #c8e6c9', borderRadius: 8,
-                    marginBottom: '1rem', outline: 'none',
-                    boxSizing: 'border-box',
+                    width: '100%', padding: '0.75rem 1rem', fontSize: '1.4rem',
+                    letterSpacing: '0.3rem', textAlign: 'center', fontWeight: 700,
+                    border: '2px solid #c8e6c9', borderRadius: 8, marginBottom: '1rem',
+                    outline: 'none', boxSizing: 'border-box',
                   }}
                 />
                 <button
@@ -89,27 +78,15 @@ export default function RejoindreClasse() {
             </div>
           ) : (
             <div className="empty-state" style={{ border: '2px solid #c8e6c9' }}>
-              <h3 style={{ color: '#1a2e1a', marginBottom: '0.5rem' }}>
-                Inscription réussie ✓
-              </h3>
+              <h3 style={{ color: '#1a2e1a', marginBottom: '0.5rem' }}>Inscription réussie</h3>
               <p style={{ color: '#555', marginBottom: '1.5rem' }}>
-                {/* Le backend renvoie { message, classe: { nom, ... } } */}
-                Vous avez rejoint <strong>{success.classe?.nom}</strong>
+                Vous avez rejoint <strong>{success.nom || success.classe_nom}</strong>
               </p>
-              <div style={{
-                display: 'flex', gap: '0.75rem',
-                justifyContent: 'center', flexWrap: 'wrap'
-              }}>
-                <button
-                  className="btn-primary"
-                  onClick={() => navigate('/dashboard/eleve')}
-                >
+              <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <button className="btn-primary" onClick={() => navigate('/dashboard/eleve')}>
                   Mon tableau de bord
                 </button>
-                <button
-                  className="btn-secondary"
-                  onClick={() => { setSuccess(null); setCode(''); }}
-                >
+                <button className="btn-secondary" onClick={() => { setSuccess(null); setCode(''); }}>
                   Rejoindre une autre classe
                 </button>
               </div>

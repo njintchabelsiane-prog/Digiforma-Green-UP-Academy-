@@ -1,13 +1,20 @@
 from pathlib import Path
 from datetime import timedelta
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-a%s4_7_dx=7v+j%q%e@+e($$-fhu)!dx2hgr$_q0^_wop&1ui^'
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY',
+    'django-insecure-a%s4_7_dx=7v+j%q%e@+e($$-fhu)!dx2hgr$_q0^_wop&1ui^',
+)
 
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True').lower() == 'true'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get(
+    'DJANGO_ALLOWED_HOSTS',
+    '127.0.0.1,localhost',
+).split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -24,6 +31,7 @@ INSTALLED_APPS = [
     # Nos apps
     'users',
     'gestion_classes',
+    'presences',
 ]
 
 MIDDLEWARE = [
@@ -76,6 +84,8 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

@@ -1,4 +1,4 @@
- import axiosInstance from './axiosConfig';
+import axiosInstance from './axiosConfig';
 
 // Sauvegarde des tokens 
 export const saveTokens = (access, refresh) => {

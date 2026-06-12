@@ -11,6 +11,14 @@ const STATUT_LABEL = {
   justifie: { label: 'Justifié', cls: 'badge--justifie' },
 };
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000';
+
+const getJustificatifUrl = (url) => {
+  if (!url) return '';
+  if (url.startsWith('http')) return url;
+  return `${API_URL}${url}`;
+};
+
 export default function MesAbsences() {
   const [absences, setAbsences] = useState([]);
   const [loading, setLoading]   = useState(true);
@@ -124,13 +132,14 @@ export default function MesAbsences() {
             <tbody>
               {mesAbsences.map((a) => {
                 const s = STATUT_LABEL[a.statut] || { label: a.statut, cls: '' };
+                const canUpload = ['absent', 'justifie'].includes(a.statut) && !a.justificatif;
                 return (
                   <tr key={a.id} className={a.statut === 'absent' ? 'row--absent' : ''}>
                     <td>{new Date(a.date).toLocaleDateString('fr-FR')}</td>
                     <td>{a.classe_nom}</td>
                     <td><span className={`badge ${s.cls}`}>{s.label}</span></td>
                     <td>
-                      {a.statut === 'absent' && !a.justificatif && (
+                      {canUpload && (
                         <button
                           className="btn-secondary btn-sm"
                           onClick={() => handleUploadClick(a.id)}
@@ -140,11 +149,18 @@ export default function MesAbsences() {
                         </button>
                       )}
                       {a.justificatif && (
-                        <span className="badge badge--justifie">
-                          {a.justificatif_valide === true  && 'Validé'}
-                          {a.justificatif_valide === false && 'Refusé'}
-                          {a.justificatif_valide === null  && 'En attente'}
-                        </span>
+                        <div className="justificatif-status">
+                          <a href={getJustificatifUrl(a.justificatif)} target="_blank" rel="noreferrer">
+                            Voir le fichier
+                          </a>
+                          <span className={`badge ${
+                            a.justificatif_valide === false ? 'badge--danger' : 'badge--justifie'
+                          }`}>
+                            {a.justificatif_valide === true  && 'Validé'}
+                            {a.justificatif_valide === false && 'Refusé'}
+                            {a.justificatif_valide === null  && 'En attente'}
+                          </span>
+                        </div>
                       )}
                     </td>
                   </tr>

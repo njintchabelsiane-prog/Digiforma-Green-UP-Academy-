@@ -7,6 +7,7 @@ const navLinks = {
   enseignant: [
     { to: '/dashboard/enseignant', label: 'Tableau de bord' },
     { to: '/classes',              label: 'Mes classes' },
+    { to: '/notifications',        label: 'Notifications' },
   ],
   eleve: [
     { to: '/dashboard/eleve', label: 'Tableau de bord' },
@@ -15,6 +16,7 @@ const navLinks = {
   ],
   admin: [
     { to: '/dashboard/admin', label: 'Tableau de bord' },
+    { to: '/notifications',   label: 'Notifications' },
   ],
 };
 

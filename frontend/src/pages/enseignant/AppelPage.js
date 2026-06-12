@@ -10,7 +10,6 @@ const STATUTS = [
   { value: 'present',  label: 'Présent',  className: 'btn-appel--present' },
   { value: 'absent',   label: 'Absent',   className: 'btn-appel--absent'  },
   { value: 'retard',   label: 'Retard',   className: 'btn-appel--retard'  },
-  { value: 'justifie', label: 'Justifié', className: 'btn-appel--justifie'},
 ];
 
 export default function AppelPage() {

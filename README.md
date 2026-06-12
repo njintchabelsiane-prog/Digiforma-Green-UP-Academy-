@@ -46,14 +46,22 @@ pip install -r requirements.txt
 # 5. Appliquer les migrations
 python manage.py migrate
 
-# 6. Creer un superutilisateur
-python manage.py createsuperuser
+# 6. Creer les comptes de demo
+python manage.py seed_demo
 
 # 7. Lancer le serveur
 python manage.py runserver
 ```
 
 L'API est accessible sur : http://127.0.0.1:8000
+
+Comptes de demo crees par `seed_demo` :
+
+| Role | Email | Mot de passe |
+|------|-------|--------------|
+| Admin | admin@greenup.test | Test1234! |
+| Enseignant | prof@test.com | Test1234! |
+| Eleve | eleve@test.com | Test1234! |
 
 ---
 
@@ -78,6 +86,19 @@ npm start
 ```
 
 L'application est accessible sur : http://localhost:3000
+
+Si l'API n'est pas sur `http://127.0.0.1:8000`, creer `frontend/.env` :
+
+```bash
+REACT_APP_API_URL=http://127.0.0.1:8000
+```
+
+Sur cette machine, le port `3000` peut deja etre occupe par un autre projet. Dans ce cas, accepter le port propose par React
+ou lancer explicitement :
+
+```bash
+HOST=127.0.0.1 PORT=3003 REACT_APP_API_URL=http://127.0.0.1:8000 npm start
+```
 
 ---
 

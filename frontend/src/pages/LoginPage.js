@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { getRedirectPath } from '../api/authService';
-import '../login.css';
+import './LoginPage.css';
 
 export default function LoginPage() {
   const [email, setEmail]       = useState('');
@@ -25,10 +24,13 @@ export default function LoginPage() {
     setLoading(true);
     try {
       const user = await login(email, password);
-      // Redirige vers le dashboard du rôle
-      navigate(getRedirectPath(user.role), { replace: true });
+      // Redirection selon le rôle — AC3 GUA-4
+      if (user.role === 'enseignant') navigate('/dashboard/enseignant', { replace: true });
+      else if (user.role === 'eleve') navigate('/dashboard/eleve',      { replace: true });
+      else if (user.role === 'admin') navigate('/dashboard/admin',      { replace: true });
+      else navigate('/login', { replace: true });
     } catch (err) {
-      // On ne précise pas si c'est l'email ou le mot de passe (AC2 GUA-4)
+      // AC2 GUA-4 — ne pas préciser si c'est email ou mot de passe
       setError('Identifiants incorrects. Vérifiez votre email et mot de passe.');
     } finally {
       setLoading(false);
@@ -36,45 +38,53 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="login-container">
-      {/* Partie gauche */}
-      <div className="left-panel">
-        <h1>Green UP Academy</h1>
-        <p>Toute la vie académique, une seule plateforme</p>
+    <div className="login-wrapper">
+      {/* Panneau gauche */}
+      <div className="login-left">
+        <div className="login-left-content">
+          <h1 className="brand-title">Green UP Academy</h1>
+          <p className="brand-subtitle">Toute la vie académique, une seule plateforme</p>
+        </div>
       </div>
 
-      {/* Partie droite */}
-      <div className="right-panel">
-        <div className="form-box">
-          <h2>Bienvenue</h2>
-          <p className="subtitle">Connectez-vous à votre espace</p>
+      {/* Panneau droit */}
+      <div className="login-right">
+        <div className="login-form-container">
+          <h2 className="form-title">Bienvenue</h2>
+          <p className="form-subtitle">Connectez-vous à votre espace</p>
 
-          {error && <div className="error">{error}</div>}
+          {error && <div className="login-error">{error}</div>}
 
-          <form onSubmit={handleSubmit}>
-            <input
-              type="email"
-              placeholder="Adresse email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              disabled={loading}
-              autoComplete="email"
-            />
+          <form className="login-form" onSubmit={handleSubmit}>
+            <div className="input-group">
+              <input
+                className="login-input"
+                type="email"
+                placeholder="Adresse email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={loading}
+                autoComplete="email"
+              />
+            </div>
 
-            <input
-              type="password"
-              placeholder="Mot de passe"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              disabled={loading}
-              autoComplete="current-password"
-            />
+            <div className="input-group">
+              <input
+                className="login-input"
+                type="password"
+                placeholder="Mot de passe"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                disabled={loading}
+                autoComplete="current-password"
+              />
+            </div>
 
-            <a href="/forgot-password" className="forgot-password">
-              Mot de passe oublié ?
-            </a>
+            <div className="forgot-password">
+              <span>Mot de passe oublié ?</span>
+            </div>
 
-            <button type="submit" disabled={loading}>
+            <button className="login-btn" type="submit" disabled={loading}>
               {loading ? 'Connexion...' : 'Se connecter'}
             </button>
           </form>

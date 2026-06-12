@@ -14,6 +14,7 @@ import StatsDashboard from './pages/enseignant/StatsDashboard';
 import DashboardEleve from './pages/eleve/DashboardEleve';
 import RejoindreClasse from './pages/eleve/RejoindreClasse';
 import MesAbsences from './pages/eleve/MesAbsences';
+import NotificationsPage from './pages/NotificationsPage';
 // Pages Admin
 import DashboardAdmin from './pages/admin/DashboardAdmin';
 
@@ -50,6 +51,11 @@ function App() {
           <Route path="/classes/:id/stats" element={
             <PrivateRoute roles={['enseignant']}>
               <StatsDashboard />
+            </PrivateRoute>
+          } />
+          <Route path="/notifications" element={
+            <PrivateRoute roles={['enseignant', 'admin']}>
+              <NotificationsPage />
             </PrivateRoute>
           } />
 
