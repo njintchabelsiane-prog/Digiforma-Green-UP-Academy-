@@ -30,8 +30,12 @@ export default function LoginPage() {
       else if (user.role === 'admin') navigate('/dashboard/admin',      { replace: true });
       else navigate('/login', { replace: true });
     } catch (err) {
-      // AC2 GUA-4 — ne pas préciser si c'est email ou mot de passe
-      setError('Identifiants incorrects. Vérifiez votre email et mot de passe.');
+      if (!err.response) {
+        setError('Serveur indisponible. Vérifiez que le backend Django est lancé sur le port 8000.');
+      } else {
+        // AC2 GUA-4 — ne pas préciser si c'est email ou mot de passe
+        setError('Identifiants incorrects. Vérifiez votre email et mot de passe.');
+      }
     } finally {
       setLoading(false);
     }
