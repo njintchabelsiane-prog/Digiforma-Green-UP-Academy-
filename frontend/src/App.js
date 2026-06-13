@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import PageRejoindreModifier from "./PageRejoindModifier";
+import MesClasses from "./MesClasses";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/PageRejoindreModifier" element={<PageRejoindreModifier/>} />
-        <Route path="*" element={<Navigate to="/PageRejoindreModifier" replace />} />
+        <Route path="/MesClasses" element={<MesClasses/>} />
+        <Route path="*" element={<Navigate to="/MesClasses" replace />} />
       </Routes>
     </Router>
   );
