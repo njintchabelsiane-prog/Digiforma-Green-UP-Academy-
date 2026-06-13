@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./PageRejoind.css";
+import "./PageRejoindreModifier.css";
 import api from "./api/axiosConfig";
 
-function PageRejoind() {
+function PageRejoindre() {
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -25,36 +25,32 @@ function PageRejoind() {
 
   return (
     <div className="layout">
+
+      {/* ── Sidebar ── */}
       <aside className="sidebar">
-        <div className="sidebar-logo">
-          <div className="logo-icon-wrap">🎓</div>
-          <span className="logo-text">EduClass</span>
-        </div>
+        <div className="sidebar-logo">Green up academy</div>
         <nav className="sidebar-nav">
           {[
-            { icon: "🏠", label: "Tableau de bord",  path: "/dashboard" },
-            { icon: "👥", label: "Mes classes",       path: "/classes" },
-            { icon: "📝", label: "Devoirs",           path: "/devoirs" },
-            { icon: "📅", label: "Calendrier",        path: "/calendrier" },
-            { icon: "💬", label: "Messages",          path: "/messages" },
-            { icon: "👤", label: "Rejoindre",         path: "/rejoindre", active: true },
-            { icon: "⚙️", label: "Paramètres",       path: "/parametres" },
+            { label: "Tableau de bord",   path: "/dashboard" },
+            { label: "Mes classes",        path: "/classes" },
+            { label: "Devoirs",            path: "/devoirs" },
+            { label: "Calendrier",         path: "/calendrier" },
+            { label: "Messages",           path: "/messages" },
+            { label: "Rejoindre une classe", path: "/rejoindre", active: true },
+            { label: "Profil",             path: "/profil" },
+            { label: "Paramètres",         path: "/parametres" },
           ].map((item) => (
             <a key={item.label} href={item.path} className={`nav-item ${item.active ? "active" : ""}`}>
-              <span className="nav-icon">{item.icon}</span>
-              <span>{item.label}</span>
+              {item.label}
             </a>
           ))}
         </nav>
       </aside>
 
+      {/* ── Main ── */}
       <main className="main">
         <header className="topbar">
           <h1 className="topbar-title">Rejoindre une classe</h1>
-          <div className="topbar-icons">
-            <button className="icon-btn">🔔</button>
-            <button className="icon-btn">👤</button>
-          </div>
         </header>
 
         <div className="content">
@@ -80,11 +76,8 @@ function PageRejoind() {
 
             {success && (
               <div className="success-banner">
-                <span className="success-icon">✓</span>
-                <div>
-                  <p className="success-title">Inscription réussie !</p>
-                  <p className="success-sub">Redirection vers votre classe...</p>
-                </div>
+                <p className="success-title">Inscription réussie !</p>
+                <p className="success-sub">Redirection vers votre classe...</p>
               </div>
             )}
           </div>
@@ -94,4 +87,4 @@ function PageRejoind() {
   );
 }
 
-export default PageRejoind;
+export default PageRejoindre;

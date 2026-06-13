@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import MesAbsence from "./MesAbscence";
+import PageRejoindreModifier from "./PageRejoindModifier";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/MesAbscence" element={<MesAbsence/>} />
-        <Route path="*" element={<Navigate to="/MesAbsence" replace />} />
+        <Route path="/PageRejoindreModifier" element={<PageRejoindreModifier/>} />
+        <Route path="*" element={<Navigate to="/PageRejoindreModifier" replace />} />
       </Routes>
     </Router>
   );
