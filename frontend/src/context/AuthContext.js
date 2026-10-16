@@ -9,22 +9,26 @@ export const AuthProvider = ({ children }) => {
 
   // Au démarrage : recharge l'utilisateur depuis localStorage si connecté
   useEffect(() => {
+    // vérifie si un access_token est présent dans le localStorage et récupère le profil utilisateur
     if (isAuthenticated()) {
+      // Récupère le profil utilisateur depuis le localStorage
       const storedUser = getUser();
+      //Injecte l'utilisateur dans l'etat global React
       setUser(storedUser);
     }
+    // Fin du chargement initial
     setLoading(false);
   }, []);
 
-  const login = async (email, password) => {
+  const login = async (email, password) => {// Appel API pour se connecter et récupérer le profil utilisateur
     const userData = await apiLogin(email, password); // appel API
-    setUser(userData);
+    setUser(userData);// Met à jour l'état global avec le profil utilisateur
     return userData;
   };
 
-  const logout = async () => {
-    await apiLogout();
-    setUser(null);
+  const logout = async () => {// Appel API pour se déconnecter et nettoyer l'état global
+    await apiLogout();// Appel API pour se déconnecter côté serveur
+    setUser(null);// Nettoie l'état global
   };
 
   const value = {

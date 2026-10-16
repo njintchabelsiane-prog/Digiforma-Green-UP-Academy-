@@ -5,10 +5,10 @@ import '../enseignant/DashboardEnseignant.css';
 import './MesAbsences.css';
 
 const STATUT_LABEL = {
-  present:  { label: 'Présent',  cls: 'badge--present'  },
-  absent:   { label: 'Absent',   cls: 'badge--absent'   },
-  retard:   { label: 'Retard',   cls: 'badge--retard'   },
-  justifie: { label: 'Justifié', cls: 'badge--justifie' },
+  present:  { label: 'Présent',  cls: 'badge--present'  },//Vert
+  absent:   { label: 'Absent',   cls: 'badge--absent'   },//Rouge
+  retard:   { label: 'Retard',   cls: 'badge--retard'   },//Orange
+  justifie: { label: 'Justifié', cls: 'badge--justifie' },//Bleu
 };
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000';
@@ -153,6 +153,7 @@ export default function MesAbsences() {
                           <a href={getJustificatifUrl(a.justificatif)} target="_blank" rel="noreferrer">
                             Voir le fichier
                           </a>
+                          {/* Statut de validation du justificatif */}
                           <span className={`badge ${
                             a.justificatif_valide === false ? 'badge--danger' : 'badge--justifie'
                           }`}>
