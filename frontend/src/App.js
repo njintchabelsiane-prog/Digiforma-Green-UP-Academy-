@@ -4,6 +4,8 @@ import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 // Pages publiques
 import LoginPage from './pages/LoginPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 // Pages Enseignant
 import DashboardEnseignant from './pages/enseignant/DashboardEnseignant';
 import ClassesList from './pages/enseignant/ClassesList';
@@ -25,6 +27,8 @@ function App() {
         <Routes>
           {/* ── Public ── */}
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/mot-de-passe-oublie" element={<ForgotPasswordPage />} />
+          <Route path="/reinitialiser-mot-de-passe/:uid/:token" element={<ResetPasswordPage />} />
           <Route path="/" element={<Navigate to="/login" replace />} />
 
           {/* ── Enseignant ── */}
@@ -33,6 +37,7 @@ function App() {
               <DashboardEnseignant />
             </PrivateRoute>
           } />
+          {/* AC3 GUA-4 : Gestion des classes pour les enseignants */}
           <Route path="/classes" element={
             <PrivateRoute roles={['enseignant']}>
               <ClassesList />
@@ -60,6 +65,7 @@ function App() {
           } />
 
           {/* ── Élève ── */}
+          {/* AC3 GUA-4 : Gestion des absences pour les élèves */}
           <Route path="/dashboard/eleve" element={
             <PrivateRoute roles={['eleve']}>
               <DashboardEleve />

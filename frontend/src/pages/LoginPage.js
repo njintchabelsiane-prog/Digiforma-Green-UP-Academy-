@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import PasswordInput from '../components/PasswordInput';
 import './LoginPage.css';
 
 export default function LoginPage() {
@@ -73,9 +74,7 @@ export default function LoginPage() {
             </div>
 
             <div className="input-group">
-              <input
-                className="login-input"
-                type="password"
+              <PasswordInput
                 placeholder="Mot de passe"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -85,7 +84,7 @@ export default function LoginPage() {
             </div>
 
             <div className="forgot-password">
-              <span>Mot de passe oublié ?</span>
+              <Link to="/mot-de-passe-oublie">Mot de passe oublié ?</Link>
             </div>
 
             <button className="login-btn" type="submit" disabled={loading}>

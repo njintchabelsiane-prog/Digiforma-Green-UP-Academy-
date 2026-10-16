@@ -4,6 +4,15 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# ── Variables locales : backend/.env (jamais commité) ─────
+_env_file = BASE_DIR / '.env'
+if _env_file.exists():
+    for _line in _env_file.read_text(encoding='utf-8').splitlines():
+        _line = _line.strip()
+        if _line and not _line.startswith('#') and '=' in _line:
+            _key, _value = _line.split('=', 1)
+            os.environ.setdefault(_key.strip(), _value.strip().strip('"\''))
+
 SECRET_KEY = os.environ.get(
     'DJANGO_SECRET_KEY',
     'django-insecure-a%s4_7_dx=7v+j%q%e@+e($$-fhu)!dx2hgr$_q0^_wop&1ui^',
@@ -112,3 +121,26 @@ SIMPLE_JWT = {
     'USER_ID_FIELD': 'email',      # ← AJOUTER
     'USER_ID_CLAIM': 'email',      # ← AJOUTER
 }
+
+# ── Email (mot de passe oublié) ───────────────────────────
+# Sans identifiants SMTP dans backend/.env, les emails s'affichent dans le terminal.
+EMAIL_HOST          = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
+EMAIL_PORT          = int(os.environ.get('EMAIL_PORT', '587'))
+EMAIL_HOST_USER     = os.environ.get('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+EMAIL_USE_TLS       = os.environ.get('EMAIL_USE_TLS', 'True').lower() == 'true'
+EMAIL_TIMEOUT       = 15
+EMAIL_BACKEND = os.environ.get(
+    'EMAIL_BACKEND',
+    'django.core.mail.backends.smtp.EmailBackend' if EMAIL_HOST_USER
+    else 'django.core.mail.backends.console.EmailBackend',
+)
+DEFAULT_FROM_EMAIL = os.environ.get(
+    'DEFAULT_FROM_EMAIL',
+    f'Green UP Academy <{EMAIL_HOST_USER}>' if EMAIL_HOST_USER else 'Green UP Academy <no-reply@greenup.test>',
+)
+
+# URL du frontend, utilisée pour construire le lien de réinitialisation
+FRONTEND_URL = os.environ.get('FRONTEND_URL', 'http://localhost:3000')
+# Durée de validité du lien de réinitialisation (secondes)
+PASSWORD_RESET_TIMEOUT = 60 * 60

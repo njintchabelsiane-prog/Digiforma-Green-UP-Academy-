@@ -62,7 +62,23 @@ export const logout = async () => {
   }
 };
 
-// Redirection selon le rôle 
+// Mot de passe oublié : demande l'envoi du lien par email
+export const requestPasswordReset = async (email) => {
+  const response = await axiosInstance.post('/api/auth/password-reset/', { email });
+  return response.data;
+};
+
+// Mot de passe oublié : enregistre le nouveau mot de passe
+export const confirmPasswordReset = async (uid, token, newPassword) => {
+  const response = await axiosInstance.post('/api/auth/password-reset/confirm/', {
+    uid,
+    token,
+    new_password: newPassword,
+  });
+  return response.data;
+};
+
+// Redirection selon le rôle
 export const getRedirectPath = (role) => {
   switch (role) {
     case 'admin':       return '/dashboard/admin';

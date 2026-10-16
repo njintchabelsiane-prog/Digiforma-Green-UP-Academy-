@@ -110,6 +110,11 @@ HOST=127.0.0.1 PORT=3003 REACT_APP_API_URL=http://127.0.0.1:8000 npm start
 | POST    | /api/auth/logout/     | Deconnexion - invalide le refresh token   | Oui              |
 | POST    | /api/auth/refresh/    | Renouveler le token d acces              | Non              |
 | GET     | /api/auth/me/         | Profil de l utilisateur connecte         | Oui              |
+| POST    | /api/auth/password-reset/         | Mot de passe oublie - envoie le lien par email | Non |
+| POST    | /api/auth/password-reset/confirm/ | Definit le nouveau mot de passe (uid + token)  | Non |
+
+Pour l envoi reel des emails, renseigner `EMAIL_HOST_USER` et `EMAIL_HOST_PASSWORD` dans `backend/.env`
+(voir `backend/.env.example`). Sans ces valeurs, l email s affiche dans le terminal Django.
 
 ---
 
